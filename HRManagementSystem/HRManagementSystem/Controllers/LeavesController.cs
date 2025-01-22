@@ -153,6 +153,10 @@ namespace HRManagementSystem.Controllers
             }
             var result = await mediator.Send(request);
 
+            if (result == (int)ErrorCode.ReturnCode.DataNotFound)
+            {
+                throw new APIError.DataNotFound();
+            }
             if (result == ErrorCode.KErrDBError)
             {
                 throw new APIError.DBConnectError();
