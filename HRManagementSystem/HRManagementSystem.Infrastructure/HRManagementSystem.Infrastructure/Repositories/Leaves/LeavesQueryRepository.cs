@@ -94,7 +94,8 @@ SELECT
     LeaveName,
     Description,
     LeaveLimitHours,
-    OperateUserId
+    OperateUserId,
+    CreateDate
 FROM        
 	Leave
 WHERE 

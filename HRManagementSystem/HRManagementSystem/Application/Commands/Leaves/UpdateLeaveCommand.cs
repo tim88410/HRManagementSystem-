@@ -6,6 +6,7 @@ namespace HRManagementSystem.Application.Commands.Leaves
     public class UpdateLeaveCommand : IRequest<int>
     {
         public int UserId { get; set; }
+        [Required]
         /// <summary>
         /// LeaveId
         /// </summary>

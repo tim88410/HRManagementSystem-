@@ -16,13 +16,13 @@ namespace HRManagementSystem.Application.Queries.Leaves
 
         public async Task<IEnumerable<LeavesResponse.LeavesInfo>?> Handle(LeavesGetOneRequest request, CancellationToken cancellationToken)
         {
-            var coindeskQuery = await leavesQueryRepository.GetOneAsync(request.Id);
+            var leavesQuery = await leavesQueryRepository.GetOneAsync(request.Id);
 
-            if (coindeskQuery == null)
+            if (leavesQuery == null)
             {
                 return null;
             }
-            return mapper.Map<IEnumerable<LeavesResponse.LeavesInfo>>(coindeskQuery.ToList());
+            return mapper.Map<IEnumerable<LeavesResponse.LeavesInfo>>(leavesQuery.ToList());
         }
     }
 }

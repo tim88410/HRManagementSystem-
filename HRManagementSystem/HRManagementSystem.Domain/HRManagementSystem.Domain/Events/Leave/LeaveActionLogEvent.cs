@@ -1,13 +1,8 @@
 ﻿using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HRManagementSystem.Domain.Events.Leave
 {
-    public class LeaveActionLogEvent: INotification
+    public class LeaveActionLogEvent : INotification
     {
         public LeaveActionLogEvent(int leaveId, string action, string oldValue, string newValue, int operatorId)
         {

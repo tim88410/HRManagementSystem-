@@ -13,16 +13,14 @@ namespace HRManagementSystem.Controllers
     [ApiController]
     public class LeavesController : ControllerBase
     {
-
         private readonly IMediator mediator;
-
         public LeavesController(IMediator mediator)
         {
             this.mediator = mediator;
         }
 
         /// <summary>
-        /// 依據Filter對Coindesk進行查詢，取得List資料
+        /// 依據Filter對Leave進行查詢，取得List資料
         /// </summary>
         /// <remarks>
         /// <code>
@@ -59,7 +57,7 @@ namespace HRManagementSystem.Controllers
         }
 
         /// <summary>
-        /// 傳入Coindesk 主Key [Id]進行查詢，取得單一資料，通常用於單一筆資料編輯時，Load的情況
+        /// 傳入Leave 主Key [Id]進行查詢，取得單一資料，通常用於單一筆資料編輯時，Load的情況
         /// </summary>
         /// <remarks>
         /// <code>
@@ -163,7 +161,7 @@ namespace HRManagementSystem.Controllers
         }
 
         /// <summary>
-        /// 刪除Coindesk內某筆資料，須注意刪除時Id必不得為0，若Id為0則判定為參數錯誤
+        /// 刪除Leaves內某筆資料，須注意刪除時Id必不得為0，若Id為0則判定為參數錯誤
         /// </summary>
         /// <remarks>
         /// <code>

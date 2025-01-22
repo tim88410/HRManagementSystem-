@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35527.113 d17.12
+VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRManagementSystem", "HRManagementSystem\HRManagementSystem.csproj", "{107407B3-C128-4758-98E7-A3836A4762DC}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRManagementSystem.Infrastructure", "HRManagementSystem.Infrastructure\HRManagementSystem.Infrastructure\HRManagementSystem.Infrastructure.csproj", "{324E81BF-710D-4BB2-9F9F-8AD83716A919}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRManagementSystem.Domain", "HRManagementSystem.Domain\HRManagementSystem.Domain\HRManagementSystem.Domain.csproj", "{B3EEAFB8-637C-4656-88BA-EE69A9310E8F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRManagementSystemTest", "HRManagementSystemTest\HRManagementSystemTest.csproj", "{EF233963-D353-4248-818D-F7759DAC54E5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{B3EEAFB8-637C-4656-88BA-EE69A9310E8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B3EEAFB8-637C-4656-88BA-EE69A9310E8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B3EEAFB8-637C-4656-88BA-EE69A9310E8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF233963-D353-4248-818D-F7759DAC54E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF233963-D353-4248-818D-F7759DAC54E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF233963-D353-4248-818D-F7759DAC54E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF233963-D353-4248-818D-F7759DAC54E5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

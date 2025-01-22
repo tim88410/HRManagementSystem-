@@ -18,7 +18,6 @@ namespace HRManagementSystem.Application.Queries.Leaves
 
         public async Task<LeavesResponse?> Handle(LeavesRequest request, CancellationToken cancellationToken)
         {
-
             var leavesPara = mapper.Map<LeavesQuery.LeavesQueryParameter>(request);
             var leavesQuery = await leavesQueryRepository.GetAsync(leavesPara);
             //DBConnectError

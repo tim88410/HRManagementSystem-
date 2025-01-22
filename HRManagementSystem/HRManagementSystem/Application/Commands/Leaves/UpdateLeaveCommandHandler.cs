@@ -4,7 +4,7 @@ using HRManagementSystem.Domain.Events.Leave;
 using HRManagementSystem.Domain.SeedWork;
 using HRManagementSystem.Infrastructure.Repositories.Leaves;
 using MediatR;
-using System.Text.Json;
+using Newtonsoft.Json;
 
 namespace HRManagementSystem.Application.Commands.Leaves
 {
@@ -27,8 +27,16 @@ namespace HRManagementSystem.Application.Commands.Leaves
         public async Task<int> Handle(UpdateLeaveCommand command, CancellationToken cancellationToken)
         {
             List<Outcome> results = new List<Outcome>();
-            Leave oldLeave = new Leave();
+            string oldLeaveJson = string.Empty;
             Leave leave;
+
+            // 自訂序列化設定
+            var settings = new JsonSerializerSettings
+            {
+                StringEscapeHandling = StringEscapeHandling.Default,
+                Formatting = Formatting.Indented
+            };
+
             if (command.Id == 0)
             {
                 leave = Leave.CreateLeave();
@@ -36,12 +44,20 @@ namespace HRManagementSystem.Application.Commands.Leaves
             else
             {
                 var getResult = await leavesQueryRepository.GetOneAsync(command.Id);
-                if (getResult == null)
+                if (!getResult.Any())
                 {
                     return (int)ErrorCode.ReturnCode.DataNotFound;
                 }
                 leave = getResult.First();
-                oldLeave = leave;
+                oldLeaveJson =JsonConvert.SerializeObject(new
+                                                {
+                                                    LeaveId = leave.Id,
+                                                    leave.LeaveName,
+                                                    leave.Description,
+                                                    leave.LeaveLimitHours,
+                                                    leave.OperateUserId
+                                                }, 
+                                            settings);
             }
 
             results.Add(leave.UpdateLeaveName(command.LeaveName));
@@ -62,26 +78,21 @@ namespace HRManagementSystem.Application.Commands.Leaves
                 {
                     return ErrorCode.KErrDBError;
                 }
+
                 leave.AddDomainEvent(new LeaveActionLogEvent(
                     command.Id,
                     "UpsertLeave",
-                    JsonSerializer.Serialize(new
-                    {
-                        LeaveId = oldLeave.Id,
-                        oldLeave.LeaveName,
-                        oldLeave.Description,
-                        oldLeave.LeaveLimitHours,
-                        oldLeave.OperateUserId
-                    }),
-                    JsonSerializer.Serialize(new
+                    oldLeaveJson,
+                    JsonConvert.SerializeObject(new
                     {
                         LeaveId = leave.Id,
                         leave.LeaveName,
                         leave.Description,
                         leave.LeaveLimitHours,
                         leave.OperateUserId
-                    }),
-                    command.UserId));
+                    }, settings),
+                    command.UserId)
+                );
                 foreach (var events in leave.DomainEvents)
                 {
                     await publisher.Publish(events, cancellationToken);

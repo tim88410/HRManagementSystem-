@@ -22,8 +22,7 @@ namespace HRManagementSystem.Application.Commands.Leaves
             this.leavesQueryRepository = leavesQueryRepository;
             this.publisher = publisher;
         }
-
-
+        
         public async Task<int> Handle(DeleteLeaveCommand command, CancellationToken cancellationToken)
         {
             List<Outcome> results = new List<Outcome>();
@@ -35,7 +34,7 @@ namespace HRManagementSystem.Application.Commands.Leaves
             }
 
             var getResult = await leavesQueryRepository.GetOneAsync(command.Id);
-            if (getResult == null)
+            if (!getResult.Any())
             {
                 return (int)ErrorCode.ReturnCode.DataNotFound;
             }

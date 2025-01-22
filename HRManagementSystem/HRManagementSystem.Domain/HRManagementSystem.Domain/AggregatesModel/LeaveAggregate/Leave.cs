@@ -11,6 +11,7 @@ namespace HRManagementSystem.Domain.AggregatesModel.LeaveAggregate
         public string Description { get; private set; } = string.Empty;
         public double LeaveLimitHours { get; private set; }
         public int OperateUserId { get; private set; }
+        public DateTime CreateDate { get; private set; }
 
         public Leave()
         {

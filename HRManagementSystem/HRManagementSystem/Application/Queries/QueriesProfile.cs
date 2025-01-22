@@ -8,10 +8,9 @@ namespace HRManagementSystem.Application.Queries
     {
         public QueriesProfile()
         {
-
             CreateMap<LeavesResponse.LeavesInfo, LeavesQuery.LeavesDTO>().ReverseMap();
             CreateMap<LeavesRequest, LeavesQuery.LeavesQueryParameter>().ReverseMap();
-
+            CreateMap<LeavesResponse.LeavesInfo, Domain.AggregatesModel.LeaveAggregate.Leave>().ReverseMap();
         }
     }
 }
