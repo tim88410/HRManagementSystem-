@@ -34,6 +34,19 @@ builder.Services.AddScoped<IDataBaseUtility, DataBaseUtility>(provider =>
     new DataBaseUtility(connectionString));
 
 
+// 註冊 CORS（加在最前面）
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend", policy =>
+    {
+        policy.WithOrigins("http://localhost:4200") // Ionic 本地開發環境網址
+              .AllowAnyHeader()
+              .AllowAnyMethod()
+              //.AllowCredentials()
+              ; // 如果前端有帶 cookie 或 token，才需要這行
+    });
+});
+
 // 添加服务到 DI 容器
 builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureLayer();
@@ -57,7 +70,8 @@ builder.Services.AddAutoMapper(
     AppDomain.CurrentDomain.GetAssemblies());
 
 var app = builder.Build();
-
+// 套用 CORS middleware（要在 UseAuthorization 之前）
+app.UseCors("AllowFrontend");
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
