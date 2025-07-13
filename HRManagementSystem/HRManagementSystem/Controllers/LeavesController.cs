@@ -3,11 +3,14 @@ using HRManagementSystem.Application.Commands.Leaves;
 using HRManagementSystem.Application.Queries.Leaves;
 using HRManagementSystem.Common;
 using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HRManagementSystem.Controllers
 {
 
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [ApiResult]
     [APIError]
     [ApiController]
