@@ -17,6 +17,7 @@ namespace HRManagementSystem.Application.Queries.Leaves
         [Required]
         [Range(1, int.MaxValue)]
         public int PageLimit { get; set; }
+        public string LeaveName { get; set; } = string.Empty;
         /// <summary>
         /// 前端排序選項
         /// </summary>
